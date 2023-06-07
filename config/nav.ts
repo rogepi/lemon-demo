@@ -1,15 +1,15 @@
-export const NAV_ITEMS = [
-  { title: "Home", url: "/" },
+export const MAIN_NAV_ITEMS = [
+  { text: 'Home', url: '/' },
   {
-    title: "Blog",
-    url: "/blog",
+    text: 'Blog',
+    url: '/blog',
   },
   {
-    title: "Q&A",
-    url: "/qa",
+    text: 'Q&A',
+    url: '/questions',
   },
   {
-    title: "About",
-    url: "/about",
+    text: 'About',
+    url: '/about',
   },
-];
+]

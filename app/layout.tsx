@@ -31,8 +31,8 @@ export default function RootLayout({
           <header className="flex justify-center">
             <NavBar />
           </header>
-          <main className="flex-1">{children}</main>
-          <footer>power by vercel&nextjs</footer>
+          <main className="w-full max-w-3xl flex-1 py-8">{children}</main>
+          <footer className="font-semibold">Power by vercel&Next.js</footer>
         </ThemeProvider>
       </body>
     </html>

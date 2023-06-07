@@ -1,9 +1,9 @@
-import { ThemeSwitch } from '@/components/theme-switch'
+import { CardsFlow } from '@/components/cards-flow'
 
 export default function HomePage() {
   return (
-    <main className="">
-      <ThemeSwitch />
-    </main>
+    <div>
+      <CardsFlow />
+    </div>
   )
 }
