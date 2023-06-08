@@ -18,7 +18,12 @@ export function ImageLinkCard({
 }: ImageLinkCardProps) {
   return (
     <BaseCard className={`relative overflow-hidden ${className || ''}`}>
-      <Image src={src} alt={alt} fill objectFit="cover" />
+      <Image
+        className="object-cover"
+        src={src}
+        alt={alt}
+        fill
+      />
       {link && (
         <Link
           href={link}

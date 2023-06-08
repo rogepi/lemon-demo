@@ -1,6 +1,8 @@
 import './globals.css'
 
 import { Inter } from 'next/font/google'
+import { notFound } from 'next/navigation'
+import { useLocale } from 'next-intl'
 
 import { NavBar } from '@/components/nav-bar'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -14,9 +16,16 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: { locale: string }
 }) {
+  const locale = useLocale()
+
+  if (params.locale !== locale) {
+    notFound()
+  }
   return (
     <html lang="en">
       <body
