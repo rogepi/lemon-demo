@@ -1,13 +1,17 @@
-import {withContentlayer} from 'next-contentlayer'
+import { createContentlayerPlugin } from 'next-contentlayer'
 import withNextIntl from 'next-intl/plugin'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify:  true
+  swcMinify: true,
 }
 
-const withPlugins = (plugins)=>(config)=>
-plugins.reduce((acc,plugin)=>plugin(acc),config)
+const withContentlayer = createContentlayerPlugin({})
 
-export default withPlugins([withNextIntl('./lib/i18n.ts'),withContentlayer])(nextConfig)
+const withPlugins = (plugins) => (config) =>
+  plugins.reduce((acc, plugin) => plugin(acc), config)
+
+export default withPlugins([withNextIntl('./lib/i18n.ts'), withContentlayer])(
+  nextConfig
+)
