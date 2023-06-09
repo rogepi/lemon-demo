@@ -1,5 +1,5 @@
-import { createContentlayerPlugin } from 'next-contentlayer'
-import withNextIntl from 'next-intl/plugin'
+const { createContentlayerPlugin } = require('next-contentlayer')
+const withNextIntl = require('next-intl/plugin')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -12,6 +12,6 @@ const withContentlayer = createContentlayerPlugin({})
 const withPlugins = (plugins) => (config) =>
   plugins.reduce((acc, plugin) => plugin(acc), config)
 
-export default withPlugins([withNextIntl('./lib/i18n.ts'), withContentlayer])(
+module.exports = withPlugins([withNextIntl('./lib/i18n.ts'), withContentlayer])(
   nextConfig
 )

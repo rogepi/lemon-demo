@@ -27,12 +27,10 @@
     }
   },
   "include": [
-    ".eslintrc.cjs",
     "next-env.d.ts",
+    "**/*.js",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.cjs",
-    "**/*.mjs",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
   ],

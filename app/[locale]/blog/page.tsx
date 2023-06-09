@@ -10,7 +10,7 @@ export default function BlogPage() {
     <div>
       <h1 className="text-3xl font-semibold">Blog</h1>
       {posts.map((item) => (
-        <Link href={`/blog/${item.url}`} key={item._ids}>
+        <Link href={`/blog/${item.url}`} key={item._id}>
           {item.title}
         </Link>
       ))}
