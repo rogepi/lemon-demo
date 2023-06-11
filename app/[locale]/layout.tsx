@@ -21,13 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
-  const locale = useLocale()
-
-  if (params.locale !== locale) {
-    notFound()
-  }
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body
         className={`${inter.className} flex min-h-screen flex-col items-center bg-[#F7F1F1] p-8 dark:bg-[#333333]`}
       >

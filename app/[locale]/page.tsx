@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 
 import { CardsFlow } from '@/components/cards-flow'
 
-export default function HomePage() {
+export default function RootPage() {
   const t = useTranslations('Index')
   return (
     <div>
