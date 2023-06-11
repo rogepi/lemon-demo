@@ -12,6 +12,6 @@ const withContentlayer = createContentlayerPlugin({})
 const withPlugins = (plugins) => (config) =>
   plugins.reduce((acc, plugin) => plugin(acc), config)
 
-module.exports = withPlugins([withNextIntl('./lib/i18n.ts'), withContentlayer])(
+module.exports = withPlugins([withNextIntl('./lib/i18n/config.ts'), withContentlayer])(
   nextConfig
 )
