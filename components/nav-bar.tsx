@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { usePathname } from 'next-intl/client'
+import Link from 'next-intl/link'
 import * as React from 'react'
 
 import { MAIN_NAV_ITEMS } from '@/config/nav'
@@ -12,11 +12,15 @@ type NavItemType = (typeof MAIN_NAV_ITEMS)[number]
 const NavItem = ({ item }: { item: NavItemType }) => {
   const t = useTranslations('Nav')
   const pathName = usePathname()
+
+  const isActive =
+    item.key === 'home' ? pathName === '/' : pathName.startsWith(item.url)
+
   return (
     <Link href={item.url}>
       <div
         className={`rounded-full p-1 px-2 text-sm font-semibold ${
-          item.url === pathName
+          isActive
             ? ` bg-gray-50  dark:bg-zinc-500`
             : 'hover:bg-gray-100 dark:hover:bg-zinc-600'
         }`}

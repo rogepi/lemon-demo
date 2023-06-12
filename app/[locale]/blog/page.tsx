@@ -3,13 +3,17 @@ import { compareDesc, format, parseISO } from 'date-fns'
 import Link from 'next/link'
 import { getMDXComponent } from 'next-contentlayer/hooks'
 
-function PostCard(post: Post) {
-  const Content = getMDXComponent(post.body.code)
+import { getMessages } from '@/lib/i18n/server'
 
+function PostCard({ post, locale }: RootParams & { post: Post }) {
+  const Content = getMDXComponent(post.body.code)
   return (
     <div className="mb-8">
       <h2 className="mb-1 text-xl">
-        <Link href={`/blog/${post.url}`} className="text-lg font-semibold">
+        <Link
+          href={`${locale === 'en' ? '' : `/${locale}`}/blog${post.url}`}
+          className="text-lg font-semibold"
+        >
           {post.title}
         </Link>
       </h2>
@@ -21,21 +25,22 @@ function PostCard(post: Post) {
   )
 }
 
-export default function BlogPage({
+export default async function BlogPage({
   params: { locale },
 }: {
   params: RootParams
 }) {
+  const messages = await getMessages({ locale })
   const posts = allPosts
     .filter((post) => post.locale === locale)
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold">Blog</h1>
+      <h1 className="text-3xl font-semibold">{messages.Nav.blog}</h1>
       <section className="mt-10">
         {posts.map((item) => (
-          <PostCard {...item} key={item._id} />
+          <PostCard post={item} locale={locale} key={item._id} />
         ))}
       </section>
     </div>

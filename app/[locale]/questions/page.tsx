@@ -1,7 +1,14 @@
-export default function QuestionsPage() {
+import { getMessages } from '@/lib/i18n/server'
+
+export default async function QuestionsPage({
+  params: { locale },
+}: {
+  params: RootParams
+}) {
+  const messages = await getMessages({ locale })
   return (
     <div>
-      <h1 className="text-3xl font-semibold">Q&A</h1>
+      <h1 className="text-3xl font-semibold">{messages.Nav.question}</h1>
     </div>
   )
 }
