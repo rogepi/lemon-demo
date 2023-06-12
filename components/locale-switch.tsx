@@ -6,21 +6,32 @@ import { useLocale } from 'next-intl'
 import * as React from 'react'
 
 import { I18N_LANGUAGES } from '@/config/i18n'
+import { useMounted } from '@/hooks/use-mounted'
 
 export function LocaleSwitch({ className }: { className?: string }) {
   const locale = useLocale()
   const router = useRouter()
   const pathname = usePathname()
+
   const onChange = (locale: string) => {
     const pathArray = pathname.split('/')
     const isEn = !I18N_LANGUAGES.find((item) => item.locale === pathArray.at(1))
-    router.push(
-      isEn ? `/${locale}${pathname}` : `/${pathArray.splice(2).join('/')}`
-    )
+
+    const shouldUpdate =
+      (isEn && locale === 'en') || (!isEn && locale === pathArray.at(1))
+
+    if (shouldUpdate) {
+      return
+    }
+
+    const updatedPath = isEn
+      ? `/${locale}${pathname}`
+      : `/${pathArray.splice(2).join('/')}`
+
+    router.push(updatedPath)
   }
 
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
+  const mounted = useMounted()
   if (!mounted) {
     return null
   }

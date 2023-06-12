@@ -4,6 +4,7 @@ import { Switch } from '@headlessui/react'
 import { useTheme } from 'next-themes'
 import * as React from 'react'
 
+import { useMounted } from '@/hooks/use-mounted'
 import { cn } from '@/lib/utils'
 
 import { IconMoon, IconSun } from './icons'
@@ -15,9 +16,8 @@ export function ThemeSwitch() {
   React.useEffect(() => {
     enabled ? setTheme('dark') : setTheme('light')
   }, [enabled, setTheme])
- 
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
+
+  const mounted = useMounted()
   if (!mounted) {
     return null
   }
