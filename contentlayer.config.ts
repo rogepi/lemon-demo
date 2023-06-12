@@ -1,30 +1,9 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import { makeSource } from 'contentlayer/source-files'
 
-const Post = defineDocumentType(() => ({
-  name: 'Post',
-  filePathPattern: `**/*.mdx`,
-  contentType: 'mdx',
-  fields: {
-    title: {
-      type: 'string',
-      description: 'The title of the post',
-      required: true,
-    },
-    date: {
-      type: 'date',
-      description: 'The date of the post',
-      required: true,
-    },
-  },
-  computedFields: {
-    url: {
-      type: 'string',
-      resolve: (doc) => `/${doc._raw.flattenedPath}`,
-    },
-  },
-}))
+import { Post } from './lib/contentlayer'
 
 export default makeSource({
-  contentDirPath: 'content/posts',
+  contentDirExclude: ['dictionaries'],
+  contentDirPath: 'content',
   documentTypes: [Post],
 })

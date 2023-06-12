@@ -2,10 +2,11 @@ import { allPosts } from 'contentlayer/generated'
 import { format, parseISO } from 'date-fns'
 import { notFound } from 'next/navigation'
 import { getMDXComponent } from 'next-contentlayer/hooks'
+import { useLocale } from 'next-intl'
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
+// export const generateStaticParams = async () =>
+//   allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
@@ -13,7 +14,10 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
 }
 
 const PostLayout = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  const locale = useLocale()
+  const post = allPosts
+    .filter((post) => post.locale === locale)
+    .find((post) => post.slug === params.slug)
 
   if (!post) {
     notFound()
