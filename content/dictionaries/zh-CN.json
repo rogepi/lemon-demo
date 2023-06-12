@@ -1,5 +1,11 @@
 {
   "Index": {
     "title": "你好 世界!"
+  },
+  "Nav": {
+    "home": "首页",
+    "blog": "博客",
+    "question": "常见问题",
+    "about": "关于"
   }
 }

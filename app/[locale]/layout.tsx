@@ -2,12 +2,18 @@ import '../globals.css'
 
 import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import { NextIntlClientProvider } from 'next-intl'
 
+import { LocaleSwitch } from '@/components/locale-switch'
 import { NavBar } from '@/components/nav-bar'
 import { ThemeProvider } from '@/components/theme-provider'
 import { getMessages } from '@/lib/i18n/server'
 
 const inter = Inter({ subsets: ['latin'] })
+
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'zh-CN' }]
+}
 
 export const metadata = {
   title: 'Lemon Demo',
@@ -16,34 +22,38 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
-  params,
+  params: { locale },
 }: {
   children: React.ReactNode
   params: RootParams
 }) {
+  let messages = {} as IntlMessages
   try {
-    await getMessages(params)
+    messages = await getMessages({ locale })
   } catch {
     notFound()
   }
 
   return (
-    <html lang={params.locale}>
+    <html lang={locale}>
       <body
         className={`${inter.className} flex min-h-screen flex-col items-center bg-[#F7F1F1] p-8 dark:bg-[#333333]`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <header className="flex justify-center">
-            <NavBar />
-          </header>
-          <main className="w-full max-w-3xl flex-1 py-8">{children}</main>
-          <footer className="font-semibold">Power by vercel&Next.js</footer>
-        </ThemeProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <header className="relative flex w-full items-center justify-center">
+              <NavBar />
+              <LocaleSwitch className="absolute right-0" />
+            </header>
+            <main className="w-full max-w-3xl flex-1 py-8">{children}</main>
+            <footer className="font-semibold">Power by vercel&Next.js</footer>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

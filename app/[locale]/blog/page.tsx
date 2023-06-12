@@ -2,7 +2,6 @@ import { allPosts, type Post } from 'contentlayer/generated'
 import { compareDesc, format, parseISO } from 'date-fns'
 import Link from 'next/link'
 import { getMDXComponent } from 'next-contentlayer/hooks'
-import { useLocale } from 'next-intl'
 
 function PostCard(post: Post) {
   const Content = getMDXComponent(post.body.code)
@@ -22,8 +21,11 @@ function PostCard(post: Post) {
   )
 }
 
-export default function BlogPage() {
-  const locale = useLocale()
+export default function BlogPage({
+  params: { locale },
+}: {
+  params: RootParams
+}) {
   const posts = allPosts
     .filter((post) => post.locale === locale)
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))

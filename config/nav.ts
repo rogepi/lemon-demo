@@ -1,15 +1,15 @@
 export const MAIN_NAV_ITEMS = [
-  { text: 'Home', url: '/' },
+  { key: 'home', url: '/' },
   {
-    text: 'Blog',
+    key: 'blog',
     url: '/blog',
   },
   {
-    text: 'Q&A',
+    key: 'question',
     url: '/questions',
   },
   {
-    text: 'About',
+    key: 'about',
     url: '/about',
   },
 ]

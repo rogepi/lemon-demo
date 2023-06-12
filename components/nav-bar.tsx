@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import * as React from 'react'
 
 import { MAIN_NAV_ITEMS } from '@/config/nav'
@@ -14,6 +15,7 @@ const NavItem = ({
   item: NavItemType
   checked: boolean
 }) => {
+  const t = useTranslations('Nav')
   return (
     <Link href={item.url}>
       <div
@@ -23,20 +25,20 @@ const NavItem = ({
             : 'hover:bg-gray-100 dark:hover:bg-zinc-600'
         }`}
       >
-        {item.text}
+        {t(`${item.key as 'home' | 'blog' | 'question' | 'about'}`)}
       </div>
     </Link>
   )
 }
 
-export function NavBar() {
-  const [checked, setChecked] = React.useState(MAIN_NAV_ITEMS[0].text)
+export function NavBar({ className }: { className?: string }) {
+  const [checked, setChecked] = React.useState(MAIN_NAV_ITEMS[0].key)
   return (
-    <nav>
+    <nav className={className}>
       <ul className="flex items-center gap-5 rounded-full bg-zinc-200/75 p-1 dark:bg-zinc-700">
         {MAIN_NAV_ITEMS.map((item, index) => (
-          <li onClick={() => setChecked(item.text)} key={index}>
-            <NavItem item={item} checked={checked === item.text} />
+          <li onClick={() => setChecked(item.key)} key={index}>
+            <NavItem item={item} checked={checked === item.key} />
           </li>
         ))}
       </ul>

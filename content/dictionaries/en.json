@@ -1,5 +1,11 @@
 {
   "Index": {
     "title": "Hello world!"
+  },
+  "Nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "question": "Q&A",
+    "about": "About"
   }
 }
