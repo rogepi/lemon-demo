@@ -9,14 +9,13 @@ import { cn } from '@/lib/utils'
 import { IconMoon, IconSun } from './icons'
 
 export function ThemeSwitch() {
-  const [enabled, setEnabled] = React.useState(false)
-
-  const { setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
+  const [enabled, setEnabled] = React.useState(theme === 'dark')
 
   React.useEffect(() => {
     enabled ? setTheme('dark') : setTheme('light')
   }, [enabled, setTheme])
-
+ 
   const [mounted, setMounted] = React.useState(false)
   React.useEffect(() => setMounted(true), [])
   if (!mounted) {
