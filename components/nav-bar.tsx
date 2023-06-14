@@ -1,7 +1,6 @@
 'use client'
 
 import { LayoutGroup, motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
 import { usePathname } from 'next-intl/client'
 import Link from 'next-intl/link'
 import * as React from 'react'
@@ -40,8 +39,15 @@ const NavItem = ({
   )
 }
 
-export function NavBar({ className }: { className?: string }) {
-  const t = useTranslations('Nav')
+type LabelsType = MessagesType['Nav']
+
+export function NavBar({
+  labels,
+  className,
+}: {
+  labels: LabelsType
+  className?: string
+}) {
   let pathname = usePathname() || '/'
   if (pathname.includes('/blog/')) {
     pathname = '/blog'
@@ -56,7 +62,7 @@ export function NavBar({ className }: { className?: string }) {
               <li key={index}>
                 <NavItem
                   url={item.url}
-                  text={t(`${item.key}`)}
+                  text={labels[item.key]}
                   isActive={isActive}
                 />
               </li>

@@ -1,5 +1,6 @@
 import '../globals.css'
 
+import { Analytics } from '@vercel/analytics/react'
 import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
@@ -39,7 +40,7 @@ export default async function RootLayout({
       <body
         className={`${inter.className} flex min-h-screen flex-col items-center bg-[#F7F1F1] p-8 dark:bg-[#333333]`}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages.Index}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -47,13 +48,14 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <header className="relative flex w-full items-center justify-center">
-              <NavBar />
+              <NavBar labels={messages.Nav} />
               <LocaleSwitch className="absolute right-0" />
             </header>
             <main className="w-full max-w-3xl flex-1 py-8">{children}</main>
             <footer className="font-semibold">Power by vercel&Next.js</footer>
           </ThemeProvider>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   )
