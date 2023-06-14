@@ -36,13 +36,13 @@ export default async function BlogPage({
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
 
   return (
-    <div>
+    <>
       <h1 className="text-3xl font-semibold">{messages.Nav.blog}</h1>
       <section className="mt-10">
         {posts.map((item) => (
           <PostCard post={item} locale={locale} key={item._id} />
         ))}
       </section>
-    </div>
+    </>
   )
 }

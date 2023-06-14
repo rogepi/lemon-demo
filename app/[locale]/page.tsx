@@ -1,9 +1,9 @@
-import { CardsFlow } from '@/components/cards-flow'
+import { CardsFlow } from '@/app/[locale]/cards-flow'
 
 export default function RootPage() {
   return (
-    <div>
+    <>
       <CardsFlow />
-    </div>
+    </>
   )
 }

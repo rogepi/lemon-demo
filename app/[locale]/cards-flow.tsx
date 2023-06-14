@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 
-import { BaseCard, BlogCard, ImageLinkCard, InfoCard } from './cards'
-import { ThemeSwitch } from './theme-switch'
+import { BaseCard, BlogCard, ImageLinkCard, InfoCard } from '@/components/cards'
+import { ThemeSwitch } from '@/components/theme-switch'
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
