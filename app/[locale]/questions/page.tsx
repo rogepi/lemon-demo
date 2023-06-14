@@ -1,5 +1,7 @@
 import { getMessages } from '@/lib/i18n/server'
 
+import { QuestionsFlow } from './questions-flow'
+
 export default async function QuestionsPage({
   params: { locale },
 }: {
@@ -7,8 +9,9 @@ export default async function QuestionsPage({
 }) {
   const messages = await getMessages(locale)
   return (
-    <div>
+    <>
       <h1 className="text-3xl font-semibold">{messages.Nav.question}</h1>
-    </div>
+      <QuestionsFlow className="mt-10" questions={messages['Q&A']} />
+    </>
   )
 }
