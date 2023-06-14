@@ -56,9 +56,7 @@ export function NavBar({ className }: { className?: string }) {
               <li key={index}>
                 <NavItem
                   url={item.url}
-                  text={t(
-                    `${item.key as 'home' | 'blog' | 'question' | 'about'}`
-                  )}
+                  text={t(`${item.key}`)}
                   isActive={isActive}
                 />
               </li>
