@@ -12,7 +12,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   return { title: post?.title }
 }
 
-type PostParams = RootParams & { slug: string }
+type PostParams = { locale: LocaleType; slug: string }
 const PostLayout = ({ params: { locale, slug } }: { params: PostParams }) => {
   const post = allPosts
     .filter((post) => post.locale === locale)

@@ -5,7 +5,7 @@ import { getMDXComponent } from 'next-contentlayer/hooks'
 
 import { getMessages } from '@/lib/i18n/server'
 
-function PostCard({ post, locale }: RootParams & { post: Post }) {
+function PostCard({ post, locale }: { post: Post; locale: LocaleType }) {
   const Content = getMDXComponent(post.body.code)
   return (
     <div className="mb-8">
@@ -28,9 +28,9 @@ function PostCard({ post, locale }: RootParams & { post: Post }) {
 export default async function BlogPage({
   params: { locale },
 }: {
-  params: RootParams
+  params: { locale: LocaleType }
 }) {
-  const messages = await getMessages({ locale })
+  const messages = await getMessages(locale)
   const posts = allPosts
     .filter((post) => post.locale === locale)
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))

@@ -3,9 +3,9 @@ import { getMessages } from '@/lib/i18n/server'
 export default async function AboutPage({
   params: { locale },
 }: {
-  params: RootParams
+  params: { locale: LocaleType }
 }) {
-  const messages = await getMessages({ locale })
+  const messages = await getMessages(locale)
 
   return (
     <div>

@@ -12,4 +12,4 @@ export const MAIN_NAV_ITEMS = [
     key: 'about',
     url: '/about',
   },
-]
+] as const

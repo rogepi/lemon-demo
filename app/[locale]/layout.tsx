@@ -25,11 +25,11 @@ export default async function RootLayout({
   params: { locale },
 }: {
   children: React.ReactNode
-  params: RootParams
+  params: { locale: LocaleType }
 }) {
-  let messages = {} as IntlMessages
+  let messages = {} as MessagesType
   try {
-    messages = await getMessages({ locale })
+    messages = await getMessages(locale)
   } catch {
     notFound()
   }
