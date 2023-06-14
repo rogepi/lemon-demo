@@ -39,7 +39,7 @@ export function LocaleSwitch({ className }: { className?: string }) {
   return (
     <div className={className}>
       <Menu>
-        <div>
+        <div className="relative">
           <Menu.Button
             className="rounded-md border-2 border-zinc-200/75 p-1 text-xs font-semibold
            hover:bg-zinc-200/75 dark:border-zinc-700 dark:hover:bg-zinc-700"
@@ -56,7 +56,7 @@ export function LocaleSwitch({ className }: { className?: string }) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 z-50 mt-2 w-16 origin-top-right divide-y divide-gray-100 rounded-md bg-[#F7F1F1] shadow-lg ring-1 ring-black/5 focus:outline-none  dark:bg-[#333333]">
+          <Menu.Items className="absolute  z-50 mt-2 w-16 origin-top-right divide-y divide-gray-100 rounded-md bg-[#F7F1F1] shadow-lg ring-1 ring-black/5 focus:outline-none  dark:bg-[#333333]">
             <div className="overflow-hidden rounded-md text-xs font-semibold">
               {I18N_LANGUAGES.map((item) => (
                 <Menu.Item key={item.id}>

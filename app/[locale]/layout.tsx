@@ -5,10 +5,11 @@ import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 
-import { LocaleSwitch } from '@/components/locale-switch'
 import { NavBar } from '@/components/nav-bar'
 import { ThemeProvider } from '@/components/theme-provider'
 import { getMessages } from '@/lib/i18n/server'
+
+import { FooterLinks } from './footer-links'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -47,12 +48,13 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <header className="relative flex w-full items-center justify-center">
+            <header>
               <NavBar labels={messages.Nav} />
-              <LocaleSwitch className="absolute right-0" />
             </header>
             <main className="w-full max-w-3xl flex-1 py-8">{children}</main>
-            <footer className="font-semibold">Power by vercel&Next.js</footer>
+            <footer className="w-full max-w-3xl font-semibold">
+              <FooterLinks />
+            </footer>
           </ThemeProvider>
         </NextIntlClientProvider>
         <Analytics />
