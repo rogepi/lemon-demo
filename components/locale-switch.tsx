@@ -31,6 +31,7 @@ export function LocaleSwitch({ className }: { className?: string }) {
       : `/${pathArray.splice(2).join('/')}`
 
     router.push(updatedPath)
+    window.scrollTo(0, 0)
   }
 
   const mounted = useMounted()
