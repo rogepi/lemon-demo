@@ -67,9 +67,9 @@ export function FooterLinks() {
   return (
     <div className="w-full md:grid md:grid-cols-2 lg:grid-cols-3">
       {/* Left */}
-      <div className="space-y-5">
+      <div className="space-y-5 pb-5">
         <LocaleSwitch />
-        <div className="flex items-center gap-3">
+        <div className="my-3 flex items-center gap-3">
           {ICON_LINK_LIST.map((item, index) => (
             <Link href={item.link} key={index} target="_blank">
               <Image

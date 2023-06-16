@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 
 import { BaseCard, BlogCard, ImageLinkCard, InfoCard } from '@/components/cards'
 import { ThemeSwitch } from '@/components/theme-switch'
+import { useMediaQuery } from '@/hooks'
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -34,9 +35,12 @@ const BLOG_MOCK_DATA = {
 }
 
 export function CardsFlow() {
+  const isSmallScreen = useMediaQuery('(min-width: 768px)')
+
   return (
     <motion.ul
-      className="grid aspect-square grid-flow-row grid-cols-4 grid-rows-4 content-start gap-3"
+      className="grid aspect-square grid-flow-row grid-cols-2 content-start gap-3 
+      md:grid-cols-4 md:grid-rows-4"
       variants={container}
       initial="hidden"
       animate="visible"
@@ -54,7 +58,7 @@ export function CardsFlow() {
           }
         />
       </motion.li>
-      <motion.li key={2} variants={item}>
+      <motion.li key={2} variants={item} className="aspect-square">
         <ImageLinkCard
           src="/map.png"
           alt="map"
@@ -68,7 +72,7 @@ export function CardsFlow() {
           alt="image1"
         />
       </motion.li>
-      <motion.li key={4} variants={item}>
+      <motion.li key={4} variants={item} className="aspect-square">
         <InfoCard
           src="/spotify_logo.svg"
           alt="Spotify"
@@ -76,13 +80,13 @@ export function CardsFlow() {
             <div>
               <div className="text-xs text-teal-500">Offline, Last played</div>
 
-              <div className="font-extrabold">{`I Dont't Belong`}</div>
+              <div className="text-xs font-extrabold">{`I Dont't Belong`}</div>
               <div className="text-xs font-semibold">{`Fontaines D.C.`}</div>
             </div>
           }
         />
       </motion.li>
-      <motion.li key={5} variants={item}>
+      <motion.li key={5} variants={item} className="aspect-square">
         <ImageLinkCard
           src="/twitter_logo.jpg"
           alt="twitter"
@@ -96,15 +100,36 @@ export function CardsFlow() {
           link="https://pixabay.com/zh/photos/desert-wall-art-minimalist-poster-7449016/"
         />
       </motion.li>
-      <motion.li key={7} variants={item} className="col-span-2">
-        <BlogCard blog={BLOG_MOCK_DATA} />
-      </motion.li>
-      <motion.li key={8} variants={item}>
-        <BaseCard className="flex items-center justify-center">
-          <ThemeSwitch />
-        </BaseCard>
-      </motion.li>
-      <motion.li key={9} variants={item} className="col-span-2">
+
+      {isSmallScreen ? (
+        <>
+          <motion.li key={7} variants={item} className="col-span-2">
+            <BlogCard blog={BLOG_MOCK_DATA} />
+          </motion.li>
+          <motion.li key={8} variants={item}>
+            <BaseCard className="flex aspect-square h-full flex-col items-center justify-center">
+              <ThemeSwitch />
+            </BaseCard>
+          </motion.li>
+        </>
+      ) : (
+        <>
+          <motion.li key={8} variants={item}>
+            <BaseCard className="flex aspect-square h-full flex-col items-center justify-center">
+              <ThemeSwitch />
+            </BaseCard>
+          </motion.li>
+          <motion.li key={7} variants={item} className="col-span-2">
+            <BlogCard blog={BLOG_MOCK_DATA} />
+          </motion.li>
+        </>
+      )}
+
+      <motion.li
+        key={9}
+        variants={item}
+        className="col-span-2 aspect-[2] md:aspect-auto"
+      >
         <ImageLinkCard
           src="/image3.jpg"
           alt="image3"

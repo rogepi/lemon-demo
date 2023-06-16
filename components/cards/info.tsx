@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import * as React from 'react'
 
+import { cn } from '@/lib/utils'
+
 import { BaseCard, type BaseCardProps } from './base'
 
 export type InfoCardProps = BaseCardProps & {
@@ -11,9 +13,7 @@ export type InfoCardProps = BaseCardProps & {
 
 export function InfoCard({ className, src, alt, content }: InfoCardProps) {
   return (
-    <BaseCard
-      className={`flex h-full flex-col justify-between ${className || ''}`}
-    >
+    <BaseCard className={cn('flex h-full flex-col justify-between', className)}>
       <div>
         <Image src={src} alt={alt} width={60} height={60} />
       </div>

@@ -19,7 +19,7 @@ const NavItem = ({
 }) => {
   return (
     <Link href={url}>
-      <div className={cn('z-auto rounded-full p-2 text-sm font-semibold')}>
+      <div className={cn('z-auto rounded-full text-sm font-semibold')}>
         <span className="relative p-2 px-3">
           <span className="isolate z-50 dark:text-white">{text}</span>
           {isActive ? (
@@ -55,7 +55,7 @@ export function NavBar({
   return (
     <LayoutGroup>
       <nav className={className}>
-        <ul className=" relative z-10 flex items-center gap-5 rounded-full bg-zinc-200/75 p-1 dark:bg-zinc-700">
+        <ul className="relative z-10 flex items-center gap-5 rounded-full bg-zinc-200/75 p-2 dark:bg-zinc-700">
           {MAIN_NAV_ITEMS.map((item, index) => {
             const isActive = item.url === pathname
             return (

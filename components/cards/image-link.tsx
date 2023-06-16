@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { cn } from '@/lib/utils'
+
 import { IconOutWard } from '../icons'
 import { BaseCard, type BaseCardProps } from './base'
 
@@ -17,13 +19,8 @@ export function ImageLinkCard({
   link,
 }: ImageLinkCardProps) {
   return (
-    <BaseCard className={`relative overflow-hidden ${className || ''}`}>
-      <Image
-        className="object-cover"
-        src={src}
-        alt={alt}
-        fill
-      />
+    <BaseCard className={cn('relative flex h-full overflow-hidden', className)}>
+      <Image className="object-cover" src={src} alt={alt} fill sizes="100" />
       {link && (
         <Link
           href={link}
