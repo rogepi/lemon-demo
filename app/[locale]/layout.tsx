@@ -51,8 +51,8 @@ export default async function RootLayout({
             <header>
               <NavBar labels={messages.Nav} />
             </header>
-            <main className="w-full max-w-3xl flex-1 py-8">{children}</main>
-            <footer className="w-full max-w-3xl font-semibold">
+            <main className="w-full max-w-4xl flex-1 py-8">{children}</main>
+            <footer className="w-full max-w-4xl font-semibold">
               <FooterLinks />
             </footer>
           </ThemeProvider>
